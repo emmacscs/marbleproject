@@ -1,0 +1,11 @@
+# Marble 2.0
+
+This Java program aims to solve the Resource allocation problem for an auction based system where agent's utility is determined by their priority of resources and budget spent
+
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
