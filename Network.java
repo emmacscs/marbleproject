@@ -16,8 +16,26 @@ public class Network
         this.edges = edges;
         this.agents = agents;
         this.resources = resources;
+        for (Agent a : agents) 
+        {
+            ArrayList<Resource> neighbors = new ArrayList<Resource>();
+            for (Edge e : edges)
+            {
+                if(e.isAgentX(a))
+                {neighbors.add(e.getY());}
+                
+            }
+            a.computePriorityList(neighbors);
+           
+        }
 
         computeInitialMatrices();
+    }
+
+    /*Method to start an allocation by using the allocationcontroller */
+    public void startAllocation()
+    {
+        AllocationController algorithm = new AllocationController(this);
     }
 
     /*Method that using the edges creates the initial adjacency matrix as well as the empty allocation matrix */
@@ -55,7 +73,6 @@ public class Network
                 }
             }
         }
-
        
     }
 
@@ -102,6 +119,17 @@ public class Network
      public ArrayList<Resource> getResources()
      {
         return resources;
+     }
+     /*Method to retrieve the edges of the network */
+     public ArrayList<Edge> getEdges()
+     {
+        return edges;
+     }
+
+     /*Method to retrieve the current allocation matrix of the network */
+     public Matrix getAllocationMatrix()
+     {
+        return allocationMatrix;
      }
 
      /*Method to check in the adjacency matrix if an agent and a resource are connected
