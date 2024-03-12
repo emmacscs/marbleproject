@@ -1,13 +1,18 @@
-import java.util.ArrayList;
+import entities.Agent;
+import entities.Edge;
+import entities.Resource;
+import java.util.*;
 
-import entities.*;
-public class Controller 
+public class Tester 
 {
 
-public static void main(String[] args) 
-{
-    
-    //create Agents
+    /*In this class I will test the different methods made for the base of the program */
+
+
+
+    public static void main(String[] args) 
+    {
+        //create Agents
     Agent a1 = new Agent(60,30);
     Agent a2 = new Agent(60,30);
     Agent a3 = new Agent(60,30);
@@ -38,14 +43,25 @@ public static void main(String[] args)
 
     Network system = new Network(edges,agents,resources);
 
-    //Make network allocate
-    system.startAllocation();
+    System.out.println( "Is an agent equal to another (should be false)   " + a1.equals(a2));
+    System.out.println( "Is an agent equal to another (should be true)   " + a1.equals(a1));
+
+    System.out.println("Neigbors of a1, should be r2 only" + a1.neighborresources + "actual resources  " + r2);
+
+    System.out.println("ADJACENCY");
+    system.adjacencyMatrix.matrixPrint();
+    System.out.println("ALLOCATION CURRENT");
+    system.allocationMatrix.matrixPrint();
+    System.out.println(system.allocationMatrix.sumRow(0));
+    System.out.println(a1.alpha);
+    System.out.println(system.isAllocation());
+
+    System.out.println("Are a1 and r2 connects? " + system.isItConnected(a1,r2));
+   
 
 
-    //output final allocation and utility
 
-    System.out.println(system.getAllocationMatrix());
-}
+
+    }
     
 }
-

@@ -16,15 +16,17 @@ public class Network
         this.edges = edges;
         this.agents = agents;
         this.resources = resources;
+
+        //Compute the neighborhood and priorityList of all agents
         for (Agent a : agents) 
         {
             ArrayList<Resource> neighbors = new ArrayList<Resource>();
             for (Edge e : edges)
             {
                 if(e.isAgentX(a))
-                {neighbors.add(e.getY());}
-                
+                {neighbors.add(e.getY());}    
             }
+            a.setneighbors(neighbors);
             a.computePriorityList(neighbors);
            
         }
@@ -79,10 +81,12 @@ public class Network
      /*Method that, using the allocation matrix of this current network checks if it's a completeallocation */
      public boolean isAllocation()
      {
+   
         //If the sum of allocation matrix row of agent x isnt equal to alphaX => false, not allocation
         // Repeat for all agents x
-        for(int i = 0; i == agents.size();i++)
+        for(int i = 0; i <= agents.size();i++)
         {
+            
            if(agents.get(i).alpha != allocationMatrix.sumRow(i))
            {
             return false;
@@ -92,7 +96,7 @@ public class Network
 
         //If the sum of the allocation matrix column for resource y isnt less than beta => false, not allocation
         //repeat for all resources y
-        for(int j = 0; j ==resources.size();j++)
+        for(int j = 0; j <=resources.size();j++)
         {
             if(resources.get(j).beta < allocationMatrix.sumCol(j))
             {

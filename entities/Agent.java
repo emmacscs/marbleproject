@@ -8,7 +8,7 @@ public class Agent
     double currentBudget; //track of budget available
     double initialBudget; 
     public int alpha;
-    ArrayList<Resource> neighborresources;
+    public ArrayList<Resource> neighborresources;
    
     ArrayList<Resource> priorityList; // first element (spot 0) has lowest priority and last element has the highers
 

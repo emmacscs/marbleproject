@@ -62,5 +62,26 @@ public class Matrix
 
         return sum;
       }
+
+      /*Method to print the matrix */
+      public void matrixPrint()
+      {
+         // Loop through all rows
+         for (int i = 0; i < rows; i++)
+         {
+            // Loop through all elements of current row
+            for (int j = 0; j < matrixBody[i].length; j++)
+            {
+                System.out.print(matrixBody[i][j] + " ");
+            }
+
+            System.out.println();
+           
+         }
+ 
+            
+
+        
+      }
     
 }
