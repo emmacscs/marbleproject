@@ -4,6 +4,7 @@ public class Resource
 {
     double initialPrice; 
     public int beta;
+    public int current_objects; //store the amount of objects placed at this resource
 
   
    
@@ -24,6 +25,19 @@ public class Resource
         return initialPrice;
     }
 
+    /*method to add an object in this resource */
+    public void addObject()
+    {
+        current_objects = current_objects+1;
+    }
+
+
+    /*method to check if there's space for one more object in this resource
+     * @return true is itheres no space, false otherwise*/
+    public boolean isFull()
+    {
+        return current_objects==beta;
+    }
     
 
     
