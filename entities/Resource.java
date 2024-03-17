@@ -1,4 +1,5 @@
 package entities;
+import java.util.*;
 
 public class Resource 
 {
@@ -6,7 +7,6 @@ public class Resource
     public int beta;
     public int current_objects; //store the amount of objects placed at this resource
 
-  
    
     boolean Active; // TRUE if the resource is usable ; false otherwise
 
@@ -37,6 +37,26 @@ public class Resource
     public boolean isFull()
     {
         return current_objects==beta;
+    }
+
+    /*Method that given all the edges in the graph will compute the neighbors of this resource
+     * @param array list of all network edges
+     * @return array list of neighbor agents
+     */
+    public ArrayList<Agent> getNeighbors(ArrayList<Edge> edges)
+    {
+        ArrayList<Agent> nei = new ArrayList<Agent>();
+
+        for (Edge e : edges)
+        {
+            if (e.getY() == this)
+            {
+                nei.add(e.getX());
+            }
+            
+        }
+        return nei;
+
     }
     
 

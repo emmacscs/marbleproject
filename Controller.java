@@ -44,7 +44,15 @@ public static void main(String[] args)
 
     //output final allocation and utility
 
-    System.out.println(system.getAllocationMatrix());
+    //System.out.println(system.getAllocationMatrix());
+
+    /*The good result is 0 30 0 0
+     *                   30 0 0 0
+     *                   0 15 0 15
+     *                   0 0 30 0
+     * 
+     * I dont know why i dont get it and why space 3-2 is not a zero???
+     */
 }
     
 }

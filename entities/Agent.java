@@ -5,7 +5,7 @@ import java.util.*;
 public class Agent 
 {
     boolean Active; // if the agent on or off
-    double currentBudget; //track of budget available
+    public double currentBudget; //track of budget available
     double initialBudget; 
     public int alpha;
     public ArrayList<Resource> neighborresources;
