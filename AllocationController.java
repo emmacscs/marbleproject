@@ -30,17 +30,27 @@ public class AllocationController
     
             AuctionSystem Auction = new AuctionSystem(temp_resource, system.edges);
     
-            Agent temp_agent = Auction.getWinner();
-            //allocate an object 
-            int indexAgent= system.agents.indexOf(temp_agent);
-            int indexResource = system.resources.indexOf(temp_resource);
-            int amount = system.allocationMatrix.getElement(indexAgent,indexResource);
-            system.allocationMatrix.insertElement(indexAgent, indexResource, amount+1);
-   
-            //the agent lost money, the resource has one more object in it
-   
-            temp_resource.current_objects ++; //one more space taken in the resource
-            temp_agent.currentBudget = temp_agent.currentBudget - Auction.highestBid.value;//the agent lost the bid money
+            if (Auction.allBids.size() >0)
+            {
+                Agent temp_agent = Auction.getWinner();
+                //allocate an object 
+                int indexAgent= system.agents.indexOf(temp_agent);
+                int indexResource = system.resources.indexOf(temp_resource);
+                int amount = system.allocationMatrix.getElement(indexAgent,indexResource);
+                system.allocationMatrix.insertElement(indexAgent, indexResource, amount+1);
+    
+                //the agent lost money, the resource has one more object in it
+    
+                temp_resource.current_objects ++; //one more space taken in the resource
+                temp_agent.currentBudget = temp_agent.currentBudget - Auction.highestBid.value;//the agent lost the bid money
+
+                temp_agent.objectsAllocated ++; //add an object already allocated from the agent
+            }
+            else
+            {
+                temp_resource.beta ++;
+            }
+            
          }
         
     }

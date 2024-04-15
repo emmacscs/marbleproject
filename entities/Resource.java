@@ -36,24 +36,23 @@ public class Resource
      * @return true is itheres no space, false otherwise*/
     public boolean isFull()
     {
-        return current_objects==beta;
+        return current_objects>=beta;
     }
 
     /*Method that given all the edges in the graph will compute the neighbors of this resource
      * @param array list of all network edges
      * @return array list of neighbor agents
      */
-    public ArrayList<Agent> getNeighbors(ArrayList<Edge> edges)
+    public ArrayList<Agent> getAvailableNeighbors(ArrayList<Edge> edges)
     {
         ArrayList<Agent> nei = new ArrayList<Agent>();
 
         for (Edge e : edges)
         {
-            if (e.getY() == this)
+            if (e.getY() == this && !e.getX().isFull())
             {
                 nei.add(e.getX());
-            }
-            
+            }   
         }
         return nei;
 

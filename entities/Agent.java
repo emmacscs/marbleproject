@@ -9,6 +9,7 @@ public class Agent
     double initialBudget; 
     public int alpha;
     public ArrayList<Resource> neighborresources;
+    public int objectsAllocated;
    
     ArrayList<Resource> priorityList; // first element (spot 0) has lowest priority and last element has the highers
 
@@ -18,6 +19,7 @@ public class Agent
         this.currentBudget = budget;
         this.Active = true;
         this.alpha = alphaX;
+        this.objectsAllocated = 0;
 
     }
 
@@ -33,6 +35,11 @@ public class Agent
     public void computePriorityList(ArrayList<Resource> neighbors)
     {
         priorityList = new ArrayList<Resource>(neighbors);
+    }
+
+    public boolean isFull()
+    {
+        return objectsAllocated >= alpha;
     }
 
     

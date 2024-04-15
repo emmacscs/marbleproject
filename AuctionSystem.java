@@ -14,16 +14,19 @@ public class AuctionSystem
     {
         this. r = r;
         //get all neighbor agents
-        allBidders = r.getNeighbors(Edges);
+        allBidders = r.getAvailableNeighbors(Edges);
 
-        //each agent place a bid
-        allBids = new ArrayList<Bid>();
-        for (Agent a : allBidders) 
-        {
-            Bid temp = new Bid(a, r.getinitialPrice());       
-            allBids.add(temp);
-
-        }
+      
+            //each agent place a bid
+            allBids = new ArrayList<Bid>();
+            for (Agent a : allBidders) 
+            {
+                Bid temp = new Bid(a, r.getinitialPrice());       
+                allBids.add(temp);
+            }
+        
+            
+        
 
 
     }
