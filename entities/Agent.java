@@ -6,7 +6,7 @@ public class Agent
 {
     boolean Active; // if the agent on or off
     public double currentBudget; //track of budget available
-    double initialBudget; 
+    public double initialBudget; 
     public int alpha;
     public ArrayList<Resource> neighborresources;
     public int objectsAllocated;

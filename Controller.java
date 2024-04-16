@@ -8,10 +8,10 @@ public static void main(String[] args)
 {
     
     //create Agents
-    Agent a1 = new Agent(60,30);
-    Agent a2 = new Agent(60,30);
-    Agent a3 = new Agent(60,30);
-    Agent a4 = new Agent(60,30);
+    Agent a1 = new Agent(120,30);
+    Agent a2 = new Agent(120,30);
+    Agent a3 = new Agent(120,30);
+    Agent a4 = new Agent(120,30);
 
     //create Resources
 

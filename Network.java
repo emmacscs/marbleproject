@@ -38,7 +38,18 @@ public class Network
     public void startAllocation()
     {
         AllocationController algorithm = new AllocationController(this);
+        for (Resource r : resources) 
+            {
+                System.out.println("This resource took :  " + r.extraSpace + "  extra slots.");
+            }
+            
+
+        for (Agent a : agents) 
+        {
+                System.err.println("This agent spent:  " + (a.initialBudget - a.currentBudget) + " euros. "); 
+        }
     }
+
 
     /*Method that using the edges creates the initial adjacency matrix as well as the empty allocation matrix */
     public void computeInitialMatrices() {
@@ -82,26 +93,10 @@ public class Network
      public boolean isAllocation()
      {
    
-        //If the sum of allocation matrix row of agent x isnt equal to alphaX => false, not allocation
-        // Repeat for all agents x
-        for(int i = 0; i <= agents.size();i++)
+        for (Agent a : agents) 
         {
-            
-           if(agents.get(i).alpha != allocationMatrix.sumRow(i))
-           {
-            return false;
-           }
-
-        }
-
-        //If the sum of the allocation matrix column for resource y isnt less than beta => false, not allocation
-        //repeat for all resources y
-        for(int j = 0; j <=resources.size();j++)
-        {
-            if(resources.get(j).beta < allocationMatrix.sumCol(j))
-            {
-                return false;
-            }
+           if(!a.isFull()) 
+           return false;
         }
 
          return true;
