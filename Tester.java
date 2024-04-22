@@ -41,7 +41,7 @@ public class Tester
     ArrayList<Edge> edges = new ArrayList<Edge>();
     edges.add(e1);edges.add(e2);edges.add(e3);edges.add(e4);edges.add(e5);edges.add(e6);
 
-    Network system = new Network(edges,agents,resources);
+    Network system = new Network(edges,agents,resources,1);
 
     System.out.println( "Is an agent equal to another (should be false)   " + a1.equals(a2));
     System.out.println( "Is an agent equal to another (should be true)   " + a1.equals(a1));

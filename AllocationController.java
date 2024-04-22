@@ -18,7 +18,7 @@ public class AllocationController
             //If a resource is full but a neighbor of it hasnt been completely allocated add one space ot the resource
             for (Resource r : system.resources) 
             {
-                if (r.isFull())
+                if (r.isFull() && system.DistributionStrategy==0)
                 {
                    for (Agent a : r.getNeighbors(system.edges)) 
                    {
@@ -29,8 +29,22 @@ public class AllocationController
                     }
                    } 
                 }
-            }
 
+                else if (r.isFull() && system.DistributionStrategy==1)
+                {
+                    for (Agent a : r.getNeighbors(system.edges)) 
+                    {
+                        if ((!a.isFull()) && (system.hasNoSpaceAvailable(a)))
+                        {
+                            Resource r2= system.getNonFullUnlinkedResource(a);
+                            system.addEdge(a, r2);
+                            System.out.println("New edge between agent: " +system.agents.indexOf(a) + "and resource  " + system.resources.indexOf(r2));
+                        } 
+                    }
+                }
+
+            }
+            
         }
         
     }

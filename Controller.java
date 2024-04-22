@@ -36,7 +36,7 @@ public static void main(String[] args)
     ArrayList<Edge> edges = new ArrayList<Edge>();
     edges.add(e1);edges.add(e2);edges.add(e3);edges.add(e4);edges.add(e5);edges.add(e6);
 
-    Network system = new Network(edges,agents,resources);
+    Network system = new Network(edges,agents,resources,1);
 
     //Make network allocate
     system.startAllocation();

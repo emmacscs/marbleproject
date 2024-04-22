@@ -11,11 +11,14 @@ public class Network
     public Matrix adjacencyMatrix;
     public Matrix allocationMatrix;
 
-    public Network(ArrayList<Edge> edges, ArrayList<Agent> agents, ArrayList<Resource> resources)
+    public int DistributionStrategy; // if 0: add extra space, if 1: add extra edge
+
+    public Network(ArrayList<Edge> edges, ArrayList<Agent> agents, ArrayList<Resource> resources, int DistributionStrategy)
     {
         this.edges = edges;
         this.agents = agents;
         this.resources = resources;
+        this.DistributionStrategy= DistributionStrategy;
 
         //Compute the neighborhood and priorityList of all agents
         for (Agent a : agents) 
@@ -48,6 +51,7 @@ public class Network
         {
                 System.err.println("This agent spent:  " + (a.initialBudget - a.currentBudget) + " euros. "); 
         }
+
     }
 
 
@@ -147,7 +151,43 @@ public class Network
         return false;
      }
 
+     /*Method to add a new edge to the matriX
+     cAN BE USED WHEN THE DISTRIBUTION MOVE CAN'T BE PERFORMED
+     @Param agent x reosurce y
+      */
+     public void addEdge(Agent x, Resource y)
+     {
+        int indexA = agents.indexOf(x);
+        int indexR = resources.indexOf(y);
+
+        adjacencyMatrix.insertElement(indexA,indexR,1);
+        x.neighborresources.add(y);
+        edges.add(new Edge(x,y));
+     }
+
     
+     public Resource getNonFullUnlinkedResource(Agent x)
+     {
+        for (Resource r : resources) 
+        {
+            if ((!isItConnected(x,r)) && (!r.isFull()))
+            {
+                return r;
+            }
+            
+        }
+        return null;
+     }
+
+     public boolean hasNoSpaceAvailable(Agent x)
+     {
+        for (Resource r: x.neighborresources)
+        {
+            if(!r.isFull())
+            return false;
+        }
+        return true;
+     }
     
 
     
