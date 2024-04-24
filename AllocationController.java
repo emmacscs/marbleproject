@@ -85,6 +85,10 @@ public class AllocationController
 
                 temp_agent.objectsAllocated ++; //add an object already allocated from the agent
 
+                double changeInUtility = temp_agent.calculateAgentUtility(system.allocationMatrix, system.agents.indexOf(temp_agent),system.resources);
+
+                System.out.println("Agent at index " + system.agents.indexOf(temp_agent) +"has utility   " + changeInUtility );
+                
                 System.out.println("Agent at index " + system.agents.indexOf(temp_agent) +"  Bought resource at index  " + system.resources.indexOf(temp_resource) + "   For " + Auction.highestBid.value + "   euros" );
                 
                 System.out.println("Agent at index " + system.agents.indexOf(temp_agent)+ "  now has " + (temp_agent.alpha - temp_agent.objectsAllocated) + "   objects left");

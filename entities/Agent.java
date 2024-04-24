@@ -10,6 +10,7 @@ public class Agent
     public int alpha;
     public ArrayList<Resource> neighborresources;
     public int objectsAllocated;
+    public double current_utility;
    
     ArrayList<Resource> priorityList; // first element (spot 0) has lowest priority and last element has the highers
 
@@ -40,6 +41,37 @@ public class Agent
     public boolean isFull()
     {
         return objectsAllocated >= alpha;
+    }
+
+    /*Method to calculate an individual utility of an agent with the formula
+     * U = (initial budget-final budget) + sum((priority of resource/neighbors)* amount of objects in that resource)
+     * @param the allocation matrix and the index of this agent
+     * @return double of utility for this agent at the given point in time
+     */
+    public double calculateAgentUtility(Matrix allocation, int agentIndex, ArrayList<Resource> allResources)
+    {
+
+        double money_utility = (initialBudget - currentBudget);
+
+        double sumOfPriority_utility = 0;
+
+        for (Resource r : this.neighborresources) 
+        {
+            double top = priorityList.indexOf(r) + 1; //avoid the 0 on numerator
+            double ratio = top / (neighborresources.size()); 
+
+            int indexR = allResources.indexOf(r);
+            int objectsinthisresource = allocation.getElement(agentIndex, indexR);
+            double resource_utility = ratio * objectsinthisresource;
+
+            sumOfPriority_utility =sumOfPriority_utility + resource_utility;
+
+        }
+
+        double utility = sumOfPriority_utility + money_utility; //final summation for the utility
+        this.current_utility = utility;
+
+        return utility;
     }
 
     

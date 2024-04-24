@@ -49,7 +49,13 @@ public class Network
 
         for (Agent a : agents) 
         {
-                System.err.println("This agent spent:  " + (a.initialBudget - a.currentBudget) + " euros. "); 
+                System.out.println("This agent spent:  " + (a.initialBudget - a.currentBudget) + " euros. "); 
+
+        }
+        for (Agent a : agents) 
+        {
+                System.out.println("This agent ended with utility:  " + a.current_utility); 
+
         }
 
     }
