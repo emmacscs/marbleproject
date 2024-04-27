@@ -1,13 +1,24 @@
 import java.util.ArrayList;
 
 import entities.*;
+
 public class Controller 
 {
 
 public static void main(String[] args) 
 {
     
-    //create Agents
+    double minimumUtility = 10000000;
+    Matrix bestAllocation = null;
+    
+
+    //Make network allocate
+    double[] allutilities = new double[100];
+
+    //On each allocation I need to restart the network
+    for(int i = 0; i < 100; i ++)
+    {
+        //create Agents
     Agent a1 = new Agent(120,30);
     Agent a2 = new Agent(120,30);
     Agent a3 = new Agent(120,30);
@@ -36,10 +47,23 @@ public static void main(String[] args)
     ArrayList<Edge> edges = new ArrayList<Edge>();
     edges.add(e1);edges.add(e2);edges.add(e3);edges.add(e4);edges.add(e5);edges.add(e6);
 
-    Network system = new Network(edges,agents,resources,1);
+        Network system = new Network(edges,agents,resources,1);
+        system.startAllocation();
 
-    //Make network allocate
-    system.startAllocation();
+        allutilities[i] = system.totalUtilityAtTheAllocation();
+        
+        if(system.totalUtilityAtTheAllocation()< minimumUtility)
+        {
+            minimumUtility = system.totalUtilityAtTheAllocation();
+            bestAllocation = system.allocationMatrix;
+        }
+    }
+    
+    plot p = new plot(allutilities);
+    p.setVisible(true);
+
+    System.out.println("Best allocation was utility:  " + minimumUtility);
+    bestAllocation.matrixPrint();
 
 
     //output final allocation and utility

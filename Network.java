@@ -43,18 +43,18 @@ public class Network
         AllocationController algorithm = new AllocationController(this);
         for (Resource r : resources) 
             {
-                System.out.println("This resource took :  " + r.extraSpace + "  extra slots.");
+                //System.out.println("This resource took :  " + r.extraSpace + "  extra slots.");
             }
             
 
         for (Agent a : agents) 
         {
-                System.out.println("This agent spent:  " + (a.initialBudget - a.currentBudget) + " euros. "); 
+                //System.out.println("This agent spent:  " + (a.initialBudget - a.currentBudget) + " euros. "); 
 
         }
         for (Agent a : agents) 
         {
-                System.out.println("This agent ended with utility:  " + a.current_utility ); 
+                //System.out.println("This agent  " + agents.indexOf(a) +  "  ended with utility:  " + a.current_utility ); 
 
         }
 
@@ -108,6 +108,8 @@ public class Network
            if(!a.isFull()) 
            return false;
         }
+
+        allocationMatrix.matrixPrint();
 
          return true;
      }
@@ -193,6 +195,19 @@ public class Network
             return false;
         }
         return true;
+     }
+
+     /*Method used at the end of the allocation to get the sum of all utilities */
+     public double totalUtilityAtTheAllocation()
+     {
+        double total = 0;
+        for (Agent a : agents) 
+        {
+            total = total + a.current_utility;
+            
+        }
+
+        return total;
      }
     
 

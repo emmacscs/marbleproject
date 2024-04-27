@@ -13,7 +13,7 @@ public class AllocationController
         while(!system.isAllocation())
         {
             allocationStep();
-            system.allocationMatrix.matrixPrint();
+            //system.allocationMatrix.matrixPrint();
             
             //If a resource is full but a neighbor of it hasnt been completely allocated add one space ot the resource
             for (Resource r : system.resources) 
@@ -78,23 +78,23 @@ public class AllocationController
     
                 //the agent lost money, the resource has one more object in it
 
-                System.out.println("Highest bid:  " + Auction.highestBid.value);
+                //System.out.println("Highest bid:  " + Auction.highestBid.value);
     
                 temp_resource.current_objects ++; //one more space taken in the resource
                 temp_agent.currentBudget = temp_agent.currentBudget - Auction.highestBid.value;//the agent lost the bid money
 
                 temp_agent.objectsAllocated ++; //add an object already allocated from the agent
 
-                double changeInUtility = temp_agent.calculateAgentUtility(system.allocationMatrix, system.agents.indexOf(temp_agent),system.resources);
+                temp_agent.calculateAgentUtility(system.allocationMatrix, system.agents.indexOf(temp_agent),system.resources);
 
-                System.out.println("Agent at index " + system.agents.indexOf(temp_agent) +"has utility   " + changeInUtility );
+                //System.out.println("Agent at index " + system.agents.indexOf(temp_agent) +"has utility   " + changeInUtility );
                 
-                System.out.println("Agent at index " + system.agents.indexOf(temp_agent) +"  Bought resource at index  " + system.resources.indexOf(temp_resource) + "   For " + Auction.highestBid.value + "   euros" );
+                //System.out.println("Agent at index " + system.agents.indexOf(temp_agent) +"  Bought resource at index  " + system.resources.indexOf(temp_resource) + "   For " + Auction.highestBid.value + "   euros" );
                 
-                System.out.println("Agent at index " + system.agents.indexOf(temp_agent)+ "  now has " + (temp_agent.alpha - temp_agent.objectsAllocated) + "   objects left");
-                System.out.println("Agent at index " + system.agents.indexOf(temp_agent)+ "  now has " + (temp_agent.initialBudget - temp_agent.currentBudget) + "   money");
+                //System.out.println("Agent at index " + system.agents.indexOf(temp_agent)+ "  now has " + (temp_agent.alpha - temp_agent.objectsAllocated) + "   objects left");
+                //System.out.println("Agent at index " + system.agents.indexOf(temp_agent)+ "  now has " + (temp_agent.initialBudget - temp_agent.currentBudget) + "   money");
 
-                System.out.println("Resource at index  " + system.resources.indexOf(temp_resource) + "   now has  " + (temp_resource.beta + temp_resource.extraSpace - temp_resource.current_objects) + "  space left  ");
+                //System.out.println("Resource at index  " + system.resources.indexOf(temp_resource) + "   now has  " + (temp_resource.beta + temp_resource.extraSpace - temp_resource.current_objects) + "  space left  ");
             }
             
          }
