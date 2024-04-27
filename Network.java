@@ -54,7 +54,7 @@ public class Network
         }
         for (Agent a : agents) 
         {
-                System.out.println("This agent ended with utility:  " + a.current_utility); 
+                System.out.println("This agent ended with utility:  " + a.current_utility ); 
 
         }
 
