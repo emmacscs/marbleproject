@@ -13,10 +13,10 @@ public static void main(String[] args)
     
 
     //Make network allocate
-    double[] allutilities = new double[100];
+    double[] allutilities = new double[1000];
 
     //On each allocation I need to restart the network
-    for(int i = 0; i < 100; i ++)
+    for(int i = 0; i < 1000; i ++)
     {
         //create Agents
     Agent a1 = new Agent(120,30);
