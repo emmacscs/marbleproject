@@ -11,7 +11,7 @@ public class Agent
     public ArrayList<Resource> neighborresources;
     public int objectsAllocated;
     public double current_utility;
-   
+
     ArrayList<Resource> priorityList; // first element (spot 0) has lowest priority and last element has the highers
 
     public Agent(double budget, int alphaX)
@@ -72,6 +72,18 @@ public class Agent
         this.current_utility = utility;
 
         return utility;
+    }
+
+    public int getPriority (Resource y, ArrayList<Edge> edges )
+    {
+        int priority_index = priorityList.indexOf(y) +1;
+        int competing_number = y.getNeighbors(edges).size() -1;
+
+        int ratio = priority_index - competing_number;
+
+        return ratio;
+
+        // i will apply the formula, priority - amount to compete against
     }
 
     

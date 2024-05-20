@@ -10,6 +10,7 @@ public class Network
 
     public Matrix adjacencyMatrix;
     public Matrix allocationMatrix;
+    public Matrix priorityMatrix;
 
     public int DistributionStrategy; // if 0: add extra space, if 1: add extra edge
 
@@ -66,6 +67,8 @@ public class Network
 
         allocationMatrix = new Matrix(agents.size(), resources.size()); // Empty matrix of size agents x resources
         adjacencyMatrix = new Matrix(agents.size(), resources.size()); // Assuming you have a Matrix class for the adjacency matrix
+        priorityMatrix = new Matrix(agents.size(),resources.size()); // looking at the priority list will compute the priority of an=gent i for reosurce j
+
     
         for (int i = 0; i < agents.size(); i++) 
         {
@@ -89,6 +92,8 @@ public class Network
                 if (isConnected) 
                 {
                     adjacencyMatrix.insertElement(i, j, 1);
+                    int priority = agt.getPriority(res, edges);
+                    priorityMatrix.insertElement(i,j,priority);
                 } 
                 else 
                 {

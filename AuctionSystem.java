@@ -10,7 +10,7 @@ public class AuctionSystem
     ArrayList<Bid> allBids;
     public Bid highestBid;
 
-    AuctionSystem(Resource r, ArrayList<Edge> Edges)
+    AuctionSystem(Resource r, ArrayList<Edge> Edges, Matrix p, int indexR)
     {
         this. r = r;
         //get all neighbor agents
@@ -21,11 +21,17 @@ public class AuctionSystem
             allBids = new ArrayList<Bid>();
             for (Agent a : allBidders) 
             {
-                Bid temp = new Bid(a, r.getinitialPrice());       
+                boolean demanded = false;
+                for (Agent ag : r.isThisResourceInHighDemand(Edges)) 
+                {
+                    if(! ag.equals(a))
+                    {
+                        demanded = true;
+                    }
+                }
+                Bid temp = new Bid(a, r.getinitialPrice(), p.getElement(allBidders.indexOf(a), indexR), demanded);       
                 allBids.add(temp);
             }
-        
-            
         
 
 

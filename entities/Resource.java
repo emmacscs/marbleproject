@@ -8,6 +8,7 @@ public class Resource
     public int current_objects; //store the amount of objects placed at this resource
     public int extraSpace;
 
+
    
     boolean Active; // TRUE if the resource is usable ; false otherwise
 
@@ -78,6 +79,21 @@ public class Resource
         return nei;
     }
     
+    //Return an arraylist with all agents that may only allocate in this resource
+    public ArrayList<Agent> isThisResourceInHighDemand(ArrayList<Edge> edges)
+    {
+
+        ArrayList<Agent> agentsDemanding =  new ArrayList<Agent>();
+        for (Agent a : this.getAvailableNeighbors(edges)) 
+        {
+            if(a.neighborresources.size()==1){
+                agentsDemanding.add(a);
+            }
+            
+        }
+
+        return agentsDemanding;
+    }
 
     
     

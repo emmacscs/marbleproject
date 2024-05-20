@@ -60,7 +60,7 @@ public class AllocationController
             Resource temp_resource = nonFullResources.get(index);
            // System.out.println(temp_resource);
     
-            AuctionSystem Auction = new AuctionSystem(temp_resource, system.edges);
+            AuctionSystem Auction = new AuctionSystem(temp_resource, system.edges, system.priorityMatrix,system.resources.indexOf(temp_resource));
     
             if (Auction.allBids.size() >0)
             {
