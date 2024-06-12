@@ -75,6 +75,8 @@ public class Controller2
     
         System.out.println("Best allocation was utility:  " + minimumUtility);
         bestAllocation.matrixPrint();
+
+        
     
     }
     /*Ideal is

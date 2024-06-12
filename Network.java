@@ -14,6 +14,8 @@ public class Network
 
     public int DistributionStrategy; // if 0: add extra space, if 1: add extra edge
 
+    public boolean ManualAllocation =false;
+
     public Network(ArrayList<Edge> edges, ArrayList<Agent> agents, ArrayList<Resource> resources, int DistributionStrategy)
     {
         this.edges = edges;
@@ -59,6 +61,8 @@ public class Network
 
         }
 
+      
+
     }
 
 
@@ -100,6 +104,7 @@ public class Network
                     adjacencyMatrix.insertElement(i, j, 0);
                 }
             }
+
         }
        
     }
@@ -107,6 +112,10 @@ public class Network
      /*Method that, using the allocation matrix of this current network checks if it's a completeallocation */
      public boolean isAllocation()
      {
+        if(ManualAllocation)
+        {
+            return true;
+        }
    
         for (Agent a : agents) 
         {
