@@ -12,7 +12,7 @@ public class Agent
     public int objectsAllocated;
     public double current_utility;
 
-    ArrayList<Resource> priorityList; // first element (spot 0) has lowest priority and last element has the highers
+    public ArrayList<Resource> priorityList; // first element (spot 0) has lowest priority and last element has the highers
 
     public Agent(double budget, int alphaX)
     {

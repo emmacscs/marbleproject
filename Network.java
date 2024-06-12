@@ -57,7 +57,10 @@ public class Network
         }
         for (Agent a : agents) 
         {
-                //System.out.println("This agent  " + agents.indexOf(a) +  "  ended with utility:  " + a.current_utility ); 
+                //System.out.println("This agent  " + agents.indexOf(a) +  "  ended with utility:  " + a.current_utility );
+                for (Resource r : a.priorityList) {
+                    System.out.println("Agent " +agents.indexOf(a) +  "  Resource" + resources.indexOf(r) + "   " + "priority: " + a.priorityList.indexOf(r));
+                }
 
         }
 
