@@ -57,7 +57,7 @@ class GraphicaPanel extends JPanel {
             g2d.drawString("Min Price: " + resource.initialPrice, resourceX + 20, resourceY + 20);
 
             // Draw beta value
-            g2d.drawString("Beta: " + resource.beta, resourceX + 20, resourceY + 40);
+            g2d.drawString("Beta: " + resource.betaFirst, resourceX + 20, resourceY + 40);
         }
         
 

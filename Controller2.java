@@ -101,7 +101,7 @@ public class Controller2
             edges.add(e4);
             edges.add(e5);
     
-            Network system = new Network(edges,agents,resources,1);
+            Network system = new Network(edges,agents,resources,0);
             system.startAllocation();
     
             allutilities[i] = system.totalUtilityAtTheAllocation();

@@ -7,6 +7,7 @@ public class Resource
     public int beta;
     public int current_objects; //store the amount of objects placed at this resource
     public int extraSpace;
+    public final int betaFirst;
 
 
    
@@ -18,6 +19,7 @@ public class Resource
         this.Active = true;
         this.beta = betaY;
         extraSpace=0;
+        betaFirst = betaY;
 
         
     }
