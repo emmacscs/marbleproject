@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class plot extends JFrame {
+public class plot1 extends JFrame {
 
     private double[] data;
 
-    public plot(double[] data) {
+    public plot1(double[] data) {
         this.data = data;
 
         setTitle("Simple Plot");
@@ -30,9 +30,10 @@ public class plot extends JFrame {
 
             // Calculate scale factors
             double maxX = data.length;
-            double maxY = getMax(data);
+            double minY = 350;
+            double maxY = 500;
             double scaleX = plotWidth / maxX;
-            double scaleY = plotHeight / maxY;
+            double scaleY = plotHeight / (maxY - minY);
 
             // Draw axis
             g2d.drawLine(50, plotHeight + 50, plotWidth + 50, plotHeight + 50); // X-axis
@@ -52,28 +53,28 @@ public class plot extends JFrame {
 
             // Draw scale numbers on y-axis
             int numYScale = 10; // Number of scale numbers on y-axis
-            double yScaleInterval = maxY / numYScale;
+            double yScaleInterval = (maxY - minY) / numYScale;
             for (int i = 0; i <= numYScale; i++) {
                 int y = (int) (plotHeight - i * yScaleInterval * scaleY) + 50;
-                g2d.drawString(Integer.toString((int) (i * yScaleInterval)), 20, y);
+                g2d.drawString(Integer.toString((int) (minY + i * yScaleInterval)), 20, y);
             }
 
             // Draw data points
             g2d.setColor(Color.BLUE);
             for (int i = 0; i < data.length; i++) {
                 int x = (int) (i * scaleX) + 50;
-                int y = (int) (plotHeight - data[i] * scaleY) + 50;
+                int y = (int) (plotHeight - (data[i] - minY) * scaleY) + 50;
                 g2d.fillOval(x - 3, y - 3, 6, 6);
             }
 
             // Find minimum value
             double min = getMin(data);
             int minX = (int) (indexOf(data, min) * scaleX) + 50;
-            int minY = (int) (plotHeight - min * scaleY) + 50;
+            int minYCoord = (int) (plotHeight - (min - minY) * scaleY) + 50;
 
             // Draw red point at the minimum value
             g2d.setColor(Color.RED);
-            g2d.fillOval(minX - 3, minY - 3, 6, 6);
+            g2d.fillOval(minX - 3, minYCoord - 3, 6, 6);
         }
 
         // Helper method to find the maximum value in an array
@@ -108,4 +109,5 @@ public class plot extends JFrame {
             return -1; // Value not found
         }
     }
+
 }

@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Resource 
 {
-    double initialPrice; 
+    public double initialPrice; 
     public int beta;
     public int current_objects; //store the amount of objects placed at this resource
     public int extraSpace;

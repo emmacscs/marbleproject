@@ -11,7 +11,7 @@ public class Agent
     public ArrayList<Resource> neighborresources;
     public int objectsAllocated;
     public double current_utility;
-
+    
     public ArrayList<Resource> priorityList; // first element (spot 0) has lowest priority and last element has the highers
 
     public Agent(double budget, int alphaX)
@@ -21,6 +21,7 @@ public class Agent
         this.Active = true;
         this.alpha = alphaX;
         this.objectsAllocated = 0;
+    
 
     }
 
@@ -85,6 +86,7 @@ public class Agent
 
         // i will apply the formula, priority - amount to compete against
     }
+
 
     
 

@@ -10,60 +10,100 @@ public static void main(String[] args)
     
     double minimumUtility = 10000000;
     Matrix bestAllocation = null;
-    
+    Network bestNetwork;
 
     //Make network allocate
     double[] allutilities = new double[1000];
+    
 
+     //create Agents
+     Agent a1 = new Agent(120,30);
+     Agent a2 = new Agent(120,30);
+     Agent a3 = new Agent(120,30);
+     Agent a4 = new Agent(120,30);
+ 
+     //create Resources
+ 
+     Resource r1 = new Resource(1,30);
+     Resource r2 = new Resource(1,45);
+     Resource r3 = new Resource(1,30);
+     Resource r4 = new Resource(1,15);
+     //createEdges
+ 
+     Edge e1 = new Edge(a1,r2);
+     Edge e2 = new Edge(a2,r1);
+     Edge e3 = new Edge(a2,r3);
+     Edge e4 = new Edge(a3,r2);
+     Edge e5 = new Edge(a3,r4);
+     Edge e6 = new Edge(a4,r3);
+ 
+     //createNetwork
+     ArrayList<Agent> agents = new ArrayList<Agent>();
+     agents.add(a1);agents.add(a2);agents.add(a3);agents.add(a4);
+     ArrayList<Resource> resources = new ArrayList<Resource>();
+     resources.add(r1);resources.add(r2);resources.add(r3);resources.add(r4);
+     ArrayList<Edge> edges = new ArrayList<Edge>();
+     edges.add(e1);edges.add(e2);edges.add(e3);edges.add(e4);edges.add(e5);edges.add(e6);
+     bestNetwork = new Network(edges,agents,resources,1);
+           
     //On each allocation I need to restart the network
     for(int i = 0; i < 1000; i ++)
     {
-        //create Agents
-    Agent a1 = new Agent(120,30);
-    Agent a2 = new Agent(120,30);
-    Agent a3 = new Agent(120,30);
-    Agent a4 = new Agent(120,30);
+
+ 
+    //create Agents
+     a1 = new Agent(120,30);
+     a2 = new Agent(120,30);
+      a3 = new Agent(120,30);
+    a4 = new Agent(120,30);
 
     //create Resources
 
-    Resource r1 = new Resource(1,30);
-    Resource r2 = new Resource(1,45);
-    Resource r3 = new Resource(1,30);
-    Resource r4 = new Resource(1,15);
+     r1 = new Resource(1,30);
+     r2 = new Resource(1,45);
+     r3 = new Resource(1,30);
+     r4 = new Resource(1,15);
     //createEdges
 
-    Edge e1 = new Edge(a1,r2);
-    Edge e2 = new Edge(a2,r1);
-    Edge e3 = new Edge(a2,r3);
-    Edge e4 = new Edge(a3,r2);
-    Edge e5 = new Edge(a3,r4);
-    Edge e6 = new Edge(a4,r3);
+     e1 = new Edge(a1,r2);
+     e2 = new Edge(a2,r1);
+     e3 = new Edge(a2,r3);
+     e4 = new Edge(a3,r2);
+     e5 = new Edge(a3,r4);
+     e6 = new Edge(a4,r3);
 
     //createNetwork
-    ArrayList<Agent> agents = new ArrayList<Agent>();
+     agents = new ArrayList<Agent>();
     agents.add(a1);agents.add(a2);agents.add(a3);agents.add(a4);
-    ArrayList<Resource> resources = new ArrayList<Resource>();
+     resources = new ArrayList<Resource>();
     resources.add(r1);resources.add(r2);resources.add(r3);resources.add(r4);
-    ArrayList<Edge> edges = new ArrayList<Edge>();
+    edges = new ArrayList<Edge>();
     edges.add(e1);edges.add(e2);edges.add(e3);edges.add(e4);edges.add(e5);edges.add(e6);
-
-        Network system = new Network(edges,agents,resources,1);
-        system.startAllocation();
-
-        allutilities[i] = system.totalUtilityAtTheAllocation();
+    Network sys = new Network(edges,agents,resources,1);
         
-        if(system.totalUtilityAtTheAllocation()< minimumUtility)
-        {
-            minimumUtility = system.totalUtilityAtTheAllocation();
-            bestAllocation = system.allocationMatrix;
-        }
+
+    sys.startAllocation();
+    allutilities[i] = sys.totalUtilityAtTheAllocation();
+    
+    if(sys.totalUtilityAtTheAllocation()< minimumUtility)
+    {
+        minimumUtility = sys.totalUtilityAtTheAllocation();
+        bestAllocation = sys.allocationMatrix;
+        bestNetwork = sys;
+    }
+
+    
     }
     
-    plot p = new plot(allutilities);
+    plot1 p = new plot1(allutilities);
     p.setVisible(true);
 
     System.out.println("Best allocation was utility:  " + minimumUtility);
     bestAllocation.matrixPrint();
+
+    Graphica graphicaFrame = new Graphica(bestNetwork, minimumUtility);
+    graphicaFrame.setVisible(true);
+
 
 
     //output final allocation and utility
